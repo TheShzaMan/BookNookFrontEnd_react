@@ -7,4 +7,55 @@ footer {
 	text-align: center;
 	width: 100%;
 	margin-top: 20%;
+	background-color: black;
+	padding-bottom: 0.2rem;
+}
+
+.copyright {
+	color: rgb(122 248 211);
+	font-size: 16px;
+	text-align: end;
+}
+
+.tooltip {
+	position: relative;
+	display: inline-block;
+	border-color: transparent;
+	padding: 0;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: rgb(122 248 211);
+	color: black;
+	text-align: center;
+	padding: 5px 0;
+	border-radius: 6px;
+	position: absolute;
+	z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+
+.button-title {
+	color: rgb(122 248 211);
+	font-size: 16px;
+	overflow: visible;
+	text-wrap: nowrap;
+	font-weight: bold;
+	text-align: center;
+}
+
+button.footer {
+	border: 0;
+	background-color: transparent;
+	max-height: 100px;
+}
+.footer-icons {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: flex-end;
 }

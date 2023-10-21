@@ -1,35 +1,46 @@
 ul {
-  display: flex;
-  justify-content: space-between;
-  list-style-type: none;
+	display: flex;
+	justify-content: space-between;
+	list-style-type: none;
+	align-items: center;
 }
 
 li {
-  font-size: 1.25rem;
+	font-size: 1.25rem;
 }
 
 .navBar {
-  background: steelblue;
-  box-shadow: 4px 2px 5px gray;
-  color: white;
-  margin-bottom: 2rem;
-  padding: 1.5rem 2rem;
-}
+	box-shadow: 4px 2px 5px rgb(71, 78, 76);
+	color: rgb(206, 206, 199);
+	margin-bottom: 2rem;
+	padding: 1.5rem 2rem;
 
+	bottom: 0;
+	font-size: 1.2rem;
+	left: 0;
+	justify-content: space-between;
+	width: 100%;
+
+	background-color: black;
+}
+.brand:hover {
+	color: rgb(122 248 211);
+}
 .navBar button {
-  background: transparent;
-  border: 2px solid white;
-  color: white;
-  padding: 0.4rem 0.5rem;
+	background: transparent;
+	border: 2px solid darkkhaki;
+	color: darkkhaki;
+	padding: 0.4rem 0.5rem;
 }
 
 .navBar button:hover {
-  background: white;
-  color: steelblue;
-  cursor: pointer;
+	background: transparent;
+	color: rgb(122 248 211);
+	cursor: pointer;
+	border-color: rgb(122 248 211);
 }
 
 .brand {
-  cursor: pointer;
-  font-size: 2rem;
+	cursor: pointer;
+	font-size: 2rem;
 }

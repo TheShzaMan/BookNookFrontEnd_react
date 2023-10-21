@@ -13,9 +13,12 @@ const Navbar = () => {
 				<li className='brand'>
 					<Link
 						to='/'
-						style={{ textDecoration: "none", color: "white" }}
+						style={{
+							textDecoration: "none",
+							color: "inherit",
+						}}
 					>
-						<b>The Book Nook</b>
+						<h2>The Book Nook</h2>
 					</Link>
 				</li>
 				<li>
