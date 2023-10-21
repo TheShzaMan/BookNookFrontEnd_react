@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "./SearchPage.css";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import axios from "axios";
-
+import SearchResults from "../../components/SearchResults/SearchResults";
 const SearchPage = () => {
 	const [searchInput, setSearchInput] = useState("");
 	const [searchResults, setSearchResults] = useState([]);
@@ -14,7 +14,7 @@ const SearchPage = () => {
 		try {
 			let searchTerm = searchInput.toLowerCase();
 			let response = await axios.get(
-				`https://www.googleapis.com/books/v1/volumes/${searchTerm}/`
+				`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}/`
 			);
 			console.log(response.data);
 		} catch (error) {
@@ -27,13 +27,19 @@ const SearchPage = () => {
 	};
 
 	return (
-		<div className='container'>
-			<h1>Search Library</h1>
-			<SearchBar
-				searchInput={searchInput}
-				setSearchInput={setSearchInput}
-				handleSubmit={handleSubmit}
-			/>
+		<div className='search-page'>
+			<div className='searchbar-container'>
+				<h1>Search Library</h1>
+				<SearchBar
+					searchInput={searchInput}
+					setSearchInput={setSearchInput}
+					handleSubmit={handleSubmit}
+				/>
+			</div>
+			<div className='searchResults-container'>
+				<h1>Search Results</h1>
+				<SearchResults />
+			</div>
 		</div>
 	);
 };

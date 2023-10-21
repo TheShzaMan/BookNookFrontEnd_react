@@ -1,0 +1,9 @@
+.search-page {
+	margin: 0 auto;
+	max-width: 600px;
+	overflow: auto;
+	text-align: center;
+}
+
+.searchResults-container {
+}

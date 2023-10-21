@@ -1,16 +1,16 @@
 import "./SearchBar.css";
 import React from "react";
 
-const SearchBar = ({ searchTerm = "", setSearchTerm, handleSubmit }) => {
+const SearchBar = ({ searchInput = "", setSearchInput, handleSubmit }) => {
 	return (
-		<form onSubmit={(e) => handleSubmit(e)} className='search'>
+		<form onSubmit={(e) => handleSubmit(e)} className='search-form'>
 			<button type='submit' className='search-button'>
 				SEARCH
 			</button>
 			<input
-				value={searchTerm}
-				onChange={(e) => setSearchTerm(e.target.value)}
 				className='search-field'
+				value={searchInput}
+				onChange={(e) => setSearchInput(e.target.value)}
 			/>
 		</form>
 	);
