@@ -12,7 +12,7 @@ footer {
 }
 
 .copyright {
-	color: rgb(122 248 211);
+	color: rgb(107, 163, 189);
 	font-size: 16px;
 	text-align: end;
 }
@@ -41,7 +41,7 @@ footer {
 }
 
 .button-title {
-	color: rgb(122 248 211);
+	color: rgb(107, 163, 189);
 	font-size: 16px;
 	overflow: visible;
 	text-wrap: nowrap;

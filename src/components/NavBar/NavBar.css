@@ -11,7 +11,7 @@ li {
 
 .navBar {
 	box-shadow: 4px 2px 5px rgb(71, 78, 76);
-	color: rgb(206, 206, 199);
+	color: darkkhaki;
 	margin-bottom: 2rem;
 	padding: 1.5rem 2rem;
 
@@ -24,23 +24,24 @@ li {
 	background-color: black;
 }
 .brand:hover {
-	color: rgb(122 248 211);
+	color: rgb(124, 119, 72);
 }
 .navBar button {
 	background: transparent;
-	border: 2px solid darkkhaki;
-	color: darkkhaki;
+	border: 2px solid rgb(107, 163, 189);
+	color: rgb(107, 163, 189);
 	padding: 0.4rem 0.5rem;
 }
 
 .navBar button:hover {
 	background: transparent;
-	color: rgb(122 248 211);
+	color: darkkhaki;
 	cursor: pointer;
-	border-color: rgb(122 248 211);
+	border-color: darkkhaki;
 }
 
 .brand {
 	cursor: pointer;
 	font-size: 2rem;
+	color: rgb(107, 163, 189);
 }

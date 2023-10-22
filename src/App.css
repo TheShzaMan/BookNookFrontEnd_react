@@ -12,6 +12,7 @@ html {
 	box-sizing: border-box;
 	font-family: "Poppins", sans-serif;
 	background-color: darkkhaki;
+	color: rgb(20, 33, 35);
 }
 
 p {
@@ -20,18 +21,20 @@ p {
 
 button {
 	background-color: transparent;
-	border: 2px solid steelblue;
+	/* border: 2px solid steelblue; */
 	color: steelblue;
-	font-size: 1rem;
+	font-size: 0.7rem;
 	font-family: inherit;
 	max-width: 150px;
-	padding: 0.5rem 0.5rem;
+	padding: 0.2rem 0.2rem;
+	height: fit-content;
+	margin: 2px;
 }
 
 button:hover {
 	cursor: pointer;
 	color: white;
-	background-color: rgb(122 248 211);
+	background-color: rgb(107, 163, 189);
 }
 
 .page {
@@ -52,8 +55,14 @@ button:hover {
 .form input {
 	display: block;
 	width: 100%;
-	height: 25px;
+	height: 40px;
 	margin: 5px;
 	padding: 3px 7px;
 	font-size: 17px;
+	background-color: darkkhaki;
+	border-bottom-color: rgb(107, 163, 189);
+	border-right-color: rgb(131, 198, 229);
+	/* border-left-color: rgb(19, 28, 33); */
+	border-left-color: rgb(62, 94, 109);
+	border-top-color: rgb(93, 154, 182);
 }

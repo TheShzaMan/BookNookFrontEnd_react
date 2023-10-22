@@ -18,7 +18,7 @@ const Navbar = () => {
 							color: "inherit",
 						}}
 					>
-						<h2>The Book Nook</h2>
+						<h1>The Book Nook</h1>
 					</Link>
 				</li>
 				<li>
