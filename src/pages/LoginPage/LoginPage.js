@@ -44,8 +44,11 @@ const LoginPage = () => {
 						Login failed, incorrect credentials!
 					</p>
 				) : null}
-				<Link to='/register'>Click to register!</Link>
 				<button>Login!</button>
+				<p>Need to sign-up first?</p>
+				<Link to='/register' className='register-link'>
+					Click to register!
+				</Link>
 			</form>
 		</div>
 	);

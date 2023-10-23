@@ -8,7 +8,7 @@ import axios from "axios";
 import SearchResults from "../../components/SearchResults/SearchResults";
 const SearchPage = () => {
 	const [searchInput, setSearchInput] = useState("");
-	const [searchResults, setSearchResults] = useState([]);
+	const [searchResults, setSearchResults] = useState();
 
 	const fetchBooks = async () => {
 		try {
@@ -16,7 +16,9 @@ const SearchPage = () => {
 			let response = await axios.get(
 				`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}/`
 			);
-			console.log(response.data);
+			console.log(response.data.items);
+
+			setSearchResults(response.data.items);
 		} catch (error) {
 			console.log("Error in fetchBooks: ", error);
 		}
@@ -29,17 +31,20 @@ const SearchPage = () => {
 	return (
 		<div className='page'>
 			<div className='searchbar-container'>
-				<h1>Search Library</h1>
+				<h2>Search Library</h2>
 				<SearchBar
 					searchInput={searchInput}
 					setSearchInput={setSearchInput}
 					handleSubmit={handleSubmit}
 				/>
 			</div>
-			<div className='searchResults-container'>
-				<h1>Search Results</h1>
-				<SearchResults />
-			</div>
+			{searchResults ? (
+				<div className='searchResults-container'>
+					<SearchResults searchResults={searchResults} />
+				</div>
+			) : (
+				<h2>...</h2>
+			)}
 		</div>
 	);
 };

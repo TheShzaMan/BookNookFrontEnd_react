@@ -7,12 +7,39 @@
 	padding: 0;
 	box-sizing: inherit;
 }
+::-webkit-scrollbar {
+	width: 10px;
+
+	border-style: inset;
+	border-width: 2px;
+	border-color: black;
+}
+::-webkit-scrollbar-button {
+	width: 0;
+	background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+	background-color: rgb(107, 163, 189);
+	border-radius: 5px;
+	border-style: groove;
+	border-width: 2px;
+	border-color: black;
+}
+::-webkit-scrollbar-track {
+	background-color: transparent;
+	width: 5px;
+}
+
+::-webkit-scrollbar-track-piece {
+	background-color: transparent;
+}
 
 html {
 	box-sizing: border-box;
 	font-family: "Poppins", sans-serif;
 	background-color: darkkhaki;
 	color: rgb(20, 33, 35);
+	min-width: 500px;
 }
 
 p {
@@ -20,10 +47,10 @@ p {
 }
 
 button {
-	background-color: transparent;
+	background-color: rgb(107, 163, 189);
 	/* border: 2px solid steelblue; */
-	color: steelblue;
-	font-size: 0.7rem;
+	color: black;
+	font-size: 1rem;
 	font-family: inherit;
 	max-width: 150px;
 	padding: 0.2rem 0.2rem;
@@ -33,14 +60,13 @@ button {
 
 button:hover {
 	cursor: pointer;
-	color: white;
+	color: #ffffff;
 	background-color: rgb(107, 163, 189);
 }
 
 .page {
 	margin: 0 auto;
-	max-width: 600px;
-	overflow: auto;
+	max-width: 700px;
 	text-align: center;
 }
 

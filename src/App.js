@@ -20,6 +20,7 @@ function App() {
 		<div>
 			<Navbar />
 			<Routes>
+				<Route path='/' element={<SearchPage />} />
 				{/* <Route
 					path='/'
 					element={
@@ -28,7 +29,7 @@ function App() {
 						</PrivateRoute>
 					}
 				/> */}
-				<Route path='/' element={<SearchPage />} />
+
 				<Route path='/register' element={<RegisterPage />} />
 				<Route path='/login' element={<LoginPage />} />
 			</Routes>

@@ -1,11 +1,13 @@
-import "./SearchResults";
+import React from "react";
+import "./SearchResults.css";
+import BookDisplayCard from "../BookDisplayCard/BookDisplayCard";
 
-const SearchResults = ({}) => {
-	return (
-		<div className='results-container'>
-			<h2>This is where the search results live.</h2>
-		</div>
-	);
+const SearchResults = ({ searchResults = [] }) => {
+	const displayCards = searchResults.map((singleBook, index) => (
+		<BookDisplayCard singleBook={singleBook} key={index} />
+	));
+
+	return <div className='results-container'>{displayCards}</div>;
 };
 
 export default SearchResults;

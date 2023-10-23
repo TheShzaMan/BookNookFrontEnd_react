@@ -1,0 +1,14 @@
+.results-container {
+	display: flex;
+	/* grid-template-columns: auto auto auto auto; */
+	/* flex-direction: row; */
+	margin-top: 0.3rem;
+	overflow-x: auto;
+	overflow-y: hidden;
+	column-gap: 1.5rem;
+	max-height: 300px;
+	align-items: center;
+	margin-left: 2.5rem;
+	margin-right: 2.5rem;
+	margin-bottom: 2rem;
+}
