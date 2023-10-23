@@ -7,6 +7,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
+import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
+import BookDetailsPage from "./pages/BookDetailsPage/BookDetailsPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -21,17 +23,25 @@ function App() {
 			<Navbar />
 			<Routes>
 				<Route path='/' element={<SearchPage />} />
-				{/* <Route
-					path='/'
+
+				<Route path='/login' element={<LoginPage />} />
+
+				<Route path='/register' element={<RegisterPage />} />
+
+				<Route path='/favorites' element={<FavoritesPage />} />
+
+				<Route path='/bookDetails' element={<BookDetailsPage />} />
+
+				{/* <Route path='/home' element={<HomePage />} /> */}
+
+				<Route
+					path='/home'
 					element={
 						<PrivateRoute>
 							<HomePage />
 						</PrivateRoute>
 					}
-				/> */}
-
-				<Route path='/register' element={<RegisterPage />} />
-				<Route path='/login' element={<LoginPage />} />
+				/>
 			</Routes>
 			<Footer />
 		</div>

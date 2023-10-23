@@ -37,9 +37,16 @@
 html {
 	box-sizing: border-box;
 	font-family: "Poppins", sans-serif;
-	background-color: darkkhaki;
+	background-image: linear-gradient(
+		to right,
+		darkkhaki,
+		rgb(188, 185, 138),
+		rgb(247, 243, 205),
+		rgb(188, 185, 138),
+		darkkhaki
+	);
 	color: rgb(20, 33, 35);
-	min-width: 500px;
+	min-width: 600px;
 }
 
 p {
@@ -68,6 +75,7 @@ button:hover {
 	margin: 0 auto;
 	max-width: 700px;
 	text-align: center;
+	min-height: 350px;
 }
 
 .form {
@@ -75,7 +83,7 @@ button:hover {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
-	gap: 1rem;
+	gap: 0.5rem;
 }
 
 .form input {

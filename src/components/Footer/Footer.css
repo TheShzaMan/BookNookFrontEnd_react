@@ -10,6 +10,7 @@ footer {
 	background-color: black;
 	padding-bottom: 0.2rem;
 	height: 20%;
+	box-shadow: -4px -2px 5px 0px rgb(107, 163, 189);
 }
 
 .copyright {

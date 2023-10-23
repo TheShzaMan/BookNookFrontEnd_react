@@ -1,0 +1,7 @@
+.form.reg {
+	flex-direction: row;
+	text-align: start;
+}
+.form.reg-form {
+	gap: 0;
+}

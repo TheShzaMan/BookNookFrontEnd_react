@@ -1,14 +1,14 @@
-import React from "react";
 import "./BookDisplayCard.css";
+import React from "react";
 import noImage from "../../assets/no-image-svgrepo-com.svg";
 
-const BookDisplay = ({ singleBook, index }) => {
+const FavBookDisplayCard = ({ singleBook, index }) => {
 	return (
-		<div className='book-display'>
+		<div className='book-display fav'>
 			<div className='display-thumb' key={index}>
-				{singleBook?.volumeInfo?.imageLinks?.smallThumbnail ? (
+				{singleBook?.thumbnailUrl ? (
 					<img
-						src={singleBook.volumeInfo.imageLinks.smallThumbnail}
+						src={singleBook.thumbnailUrl}
 						alt='Book cover thumbnail'
 						className='display-thumb'
 					/>
@@ -21,11 +21,10 @@ const BookDisplay = ({ singleBook, index }) => {
 				)}
 			</div>
 			<div className='display-title'>
-				<p className='display-title'>{singleBook.volumeInfo.title}</p>
-				<p className='authors'>{singleBook.volumeInfo.authors}</p>
+				<p className='display-title'>{singleBook.title}</p>
 			</div>
 		</div>
 	);
 };
 
-export default BookDisplay;
+export default FavBookDisplayCard;

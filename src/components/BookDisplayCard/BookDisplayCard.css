@@ -11,6 +11,10 @@
 	box-shadow: 4px 2px 5px rgb(47, 71, 82);
 	margin-bottom: 10px;
 }
+.book-display.fav {
+	width: 190px;
+}
+
 .display-thumb {
 	width: 160px;
 	height: 160px;

@@ -1,11 +1,17 @@
+// General Imports
 import React, { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import "./SearchPage.css";
+
+// Component Imports
+import SearchBar from "../../components/SearchBar/SearchBar";
+import ResultsDisplay from "../../components/ResultsDisplay/ResultsDisplay";
+
+// Util Imports
 import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
-import { Link } from "react-router-dom";
-import "./SearchPage.css";
-import SearchBar from "../../components/SearchBar/SearchBar";
-import axios from "axios";
-import SearchResults from "../../components/SearchResults/SearchResults";
+
 const SearchPage = () => {
 	const [searchInput, setSearchInput] = useState("");
 	const [searchResults, setSearchResults] = useState();
@@ -40,7 +46,7 @@ const SearchPage = () => {
 			</div>
 			{searchResults ? (
 				<div className='searchResults-container'>
-					<SearchResults searchResults={searchResults} />
+					<ResultsDisplay queryResults={searchResults} />
 				</div>
 			) : (
 				<h2>...</h2>

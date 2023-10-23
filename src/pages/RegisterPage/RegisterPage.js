@@ -1,4 +1,11 @@
+// General Imports
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import "./RegisterPage.css";
+
+// Component Imports
+
+// Util Imports
 import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
 
@@ -18,40 +25,42 @@ const RegisterPage = () => {
 
 	return (
 		<div className='page'>
-			<form className='form' onSubmit={handleSubmit}>
-				<label>
-					Username:{" "}
-					<input
-						type='text'
-						name='username'
-						value={formData.username}
-						onChange={handleInputChange}
-					/>
-				</label>
-				<label>
-					First Name:{" "}
-					<input
-						type='text'
-						name='firstName'
-						value={formData.firstName}
-						onChange={handleInputChange}
-					/>
-				</label>
-				<label>
-					Last Name:{" "}
-					<input
-						type='text'
-						name='lastName'
-						value={formData.lastName}
-						onChange={handleInputChange}
-					/>
-				</label>
+			<form className='form reg-form' onSubmit={handleSubmit}>
+				<div className='form reg'>
+					<label>
+						First Name:{" "}
+						<input
+							type='text'
+							name='firstName'
+							value={formData.firstName}
+							onChange={handleInputChange}
+						/>
+					</label>
+					<label>
+						Last Name:{" "}
+						<input
+							type='text'
+							name='lastName'
+							value={formData.lastName}
+							onChange={handleInputChange}
+						/>
+					</label>
+				</div>
 				<label>
 					Email:{" "}
 					<input
 						type='text'
 						name='email'
 						value={formData.email}
+						onChange={handleInputChange}
+					/>
+				</label>
+				<label>
+					Username:{" "}
+					<input
+						type='text'
+						name='username'
+						value={formData.username}
 						onChange={handleInputChange}
 					/>
 				</label>
@@ -64,7 +73,9 @@ const RegisterPage = () => {
 						onChange={handleInputChange}
 					/>
 				</label>
-				<button>Register!</button>
+				<Link to='/login'>
+					<button>Register!</button>
+				</Link>
 			</form>
 		</div>
 	);
