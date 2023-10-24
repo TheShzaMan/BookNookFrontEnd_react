@@ -25,7 +25,7 @@ const RegisterPage = () => {
 
 	return (
 		<div className='page'>
-			<form className='form reg-form' onSubmit={handleSubmit}>
+			<form className='form' onSubmit={handleSubmit}>
 				<div className='form reg'>
 					<label>
 						First Name:{" "}
@@ -74,7 +74,7 @@ const RegisterPage = () => {
 					/>
 				</label>
 				<Link to='/login'>
-					<button>Register!</button>
+					<button type='submit'>Register!</button>
 				</Link>
 			</form>
 		</div>
