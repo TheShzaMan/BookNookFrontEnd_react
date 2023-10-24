@@ -11,6 +11,6 @@ import WireFrame from "../../components/ExtSrcsDisplays/Wireframe";
 
 const ExtSrcsPage = ({ extSrcToDisplay }) => {
 	return <div className='page'>{/* <{extSrcToDisplay}/> */}</div>;
-};
+}; //NEEDS TO BE COMPLETED
 
 export default ExtSrcsPage;
