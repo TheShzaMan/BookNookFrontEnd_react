@@ -1,0 +1,19 @@
+/* .detail {
+	display: flex;
+} */
+.title-line {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+.favbuttons {
+	display: flex;
+	cursor: pointer;
+	width: auto;
+	justify-content: space-evenly;
+}
+.title {
+	align-self: flex-end;
+}
+.unfav {
+}

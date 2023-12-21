@@ -9,6 +9,7 @@ import emptyHeart from "../../assets/favourite-heart-alt-empty.svg";
 import noImage from "../../assets/no-image-svgrepo-com.svg";
 
 // Component Imports
+import "./BookDetailsPage.css";
 
 // Util Imports
 
@@ -26,7 +27,7 @@ const BookDetailsPage = () => {
 		fetchGoogleBookDetails();
 	}, []);
 	useEffect(() => {
-		fetchReviewDetails();
+		user && fetchReviewDetails();
 	}, []);
 
 	const fetchGoogleBookDetails = async () => {
@@ -35,7 +36,7 @@ const BookDetailsPage = () => {
 				`https://www.googleapis.com/books/v1/volumes/${id}/`
 			);
 
-			console.log(response);
+			console.log("Response from Google Books: ", response);
 			setBookDetails(response.data);
 		} catch (error) {
 			console.log("Error in fetchGoogleBookDetails: ", error);
@@ -44,31 +45,37 @@ const BookDetailsPage = () => {
 	const fetchReviewDetails = async () => {
 		try {
 			let responseB = await axios.get(
-				`https://localhost:5001/api/BookDetails/${id}/`
+				`https://localhost:5001/api/BookDetails/${id}/`,
+				{
+					headers: {
+						Authorization: "Bearer " + token,
+					},
+				}
 			);
+			console.log("Response from local api: ", responseB);
 			setReviewDetails(responseB.data);
 		} catch (error) {
-			console.log(
+			console.warn(
 				"Error in fetchReviewDetails axios get request: ",
 				error
 			);
 		}
 	};
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
+	const postNewReview = async () => {
 		const reviewFormData = {
-			BookId: { id },
-			Text: { reviewText },
-			Rating: { reviewRating },
+			BookId: id,
+			Text: reviewText,
+			Rating: reviewRating,
 		};
+
 		try {
-			const response = await axios.post(
+			let response = await axios.post(
 				"https://localhost:5001/api/reviews",
+				reviewFormData,
 				{
 					headers: {
 						Authorization: "Bearer " + token,
-						reviewFormData,
 					},
 				}
 			);
@@ -84,11 +91,16 @@ const BookDetailsPage = () => {
 		}
 	};
 
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		postNewReview();
+	};
+
 	return (
 		<div className='page detail'>
 			{bookDetails?.volumeInfo?.title ? (
 				<div className='title-line'>
-					<div>
+					<div className='title'>
 						<h2>{bookDetails.volumeInfo.title}</h2>
 					</div>
 					<div className='favbuttons'>
@@ -96,15 +108,15 @@ const BookDetailsPage = () => {
 							src={favHeart}
 							alt='favorite heart icon'
 							className='fav'
-							width={80}
-							height={80}
+							width={60}
+							height={60}
 						/>
 						<img
+							className='unfav'
 							src={emptyHeart}
 							alt='unselected heart icon'
-							className='not-fav'
-							width={80}
-							height={80}
+							width={60}
+							height={60}
 						/>
 					</div>
 				</div>
@@ -127,7 +139,7 @@ const BookDetailsPage = () => {
 					/>
 				</div>
 			)}
-			{bookDetails?.volumeInfo?.authors ? (
+			{bookDetails?.volumeInfo?.authors && (
 				<div className='description'>
 					<div className='authors'>
 						{bookDetails.volumeInfo.authors}
@@ -136,20 +148,22 @@ const BookDetailsPage = () => {
 						{bookDetails.volumeInfo.description}
 					</div>
 				</div>
-			) : (
-				console.log("no")
 			)}
 			<div className='reviews'>
 				<div className='average'>{reviewDetails.avgRating}</div>
 				<div className='reviewsList'>
 					<h4>Reviews:</h4>
-					{reviewDetails.map((review) => {
-						<div className='review-for-list'>
-							<span>{review.userName}</span>
-							<span>{review.rating}</span>
-							<p>{review.text}</p>
-						</div>;
-					})}
+					{!reviewDetails.reviews ? (
+						<h5>Be the first to review this book!</h5>
+					) : (
+						reviewDetails.reviews.map((review) => {
+							<div className='review-for-list'>
+								<span>{review.userName}</span>
+								<span>{review.rating}</span>
+								<p>{review.text}</p>
+							</div>;
+						})
+					)}
 				</div>
 			</div>
 			{user ? (
