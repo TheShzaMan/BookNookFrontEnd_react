@@ -9,26 +9,29 @@ import emptyHeart from "../../assets/favourite-heart-alt-empty.svg";
 import noImage from "../../assets/no-image-svgrepo-com.svg";
 
 // Component Imports
+import ReviewDisplay from "../../components/ReviewDisplay";
 import "./BookDetailsPage.css";
+import ReviewForm from "../../components/ReviewForm/ReviewForm";
 
 // Util Imports
-
 import useAuth from "../../hooks/useAuth";
+import usePopup from "../../hooks/usePopup";
 
 const BookDetailsPage = () => {
 	const { id } = useParams();
 	const [bookDetails, setBookDetails] = useState([]);
 	const [reviewDetails, setReviewDetails] = useState([]);
 	const [user, token] = useAuth();
+	const { popupState, openPopup, closePopup, togglePopup } = usePopup();
 	const [reviewText, setReviewText] = useState("");
 	const [reviewRating, setReviewRating] = useState("");
-
 	useEffect(() => {
 		fetchGoogleBookDetails();
 	}, []);
+
 	useEffect(() => {
 		user && fetchReviewDetails();
-	}, []);
+	}, [bookDetails, user]);
 
 	const fetchGoogleBookDetails = async () => {
 		try {
@@ -44,7 +47,7 @@ const BookDetailsPage = () => {
 	};
 	const fetchReviewDetails = async () => {
 		try {
-			let responseB = await axios.get(
+			let response = await axios.get(
 				`https://localhost:5001/api/BookDetails/${id}/`,
 				{
 					headers: {
@@ -52,8 +55,8 @@ const BookDetailsPage = () => {
 					},
 				}
 			);
-			console.log("Response from local api: ", responseB);
-			setReviewDetails(responseB.data);
+			console.log("Response from local api: ", response.data.reviews);
+			setReviewDetails(response.data);
 		} catch (error) {
 			console.warn(
 				"Error in fetchReviewDetails axios get request: ",
@@ -94,6 +97,7 @@ const BookDetailsPage = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		postNewReview();
+		closePopup();
 	};
 
 	return (
@@ -150,60 +154,45 @@ const BookDetailsPage = () => {
 				</div>
 			)}
 			<div className='reviews'>
-				<div className='average'>{reviewDetails.avgRating}</div>
+				{reviewDetails?.avgRating > 0 && (
+					<div className='average'>
+						<h4>Avg User Rating: </h4>
+						{reviewDetails.avgRating} out of 5
+					</div>
+				)}
+
+				{!user ? (
+					<div className='no-post'>
+						<h3>Log in to post reviews</h3>
+					</div>
+				) : (
+					<>
+						<button onClick={openPopup}>Submit A Review</button>
+
+						<ReviewForm
+							popupState={popupState}
+							handleSubmit={handleSubmit}
+							setReviewRating={setReviewRating}
+							reviewRating={reviewRating}
+							setReviewText={setReviewText}
+							reviewText={reviewText}
+						/>
+					</>
+				)}
+				<br></br>
+				<h3>Reviews:</h3>
 				<div className='reviewsList'>
-					<h4>Reviews:</h4>
 					{!reviewDetails.reviews ? (
-						<h5>Be the first to review this book!</h5>
+						<h5>Be the first to review this book</h5>
 					) : (
-						reviewDetails.reviews.map((review) => {
-							<div className='review-for-list'>
-								<span>{review.userName}</span>
-								<span>{review.rating}</span>
-								<p>{review.text}</p>
-							</div>;
-						})
+						<>
+							{reviewDetails.reviews.map((review, index) => (
+								<ReviewDisplay review={review} key={index} />
+							))}
+						</>
 					)}
 				</div>
 			</div>
-			{user ? (
-				<div className='form'>
-					<form onSubmit={handleSubmit}>
-						<h3>Submit Review: </h3>
-						<label>
-							Book Rating: 0 to 5
-							<input
-								type='number'
-								value={reviewRating}
-								min='0'
-								max='5'
-								size='3'
-								onChange={(e) =>
-									setReviewRating(e.target.value)
-								}
-							/>
-						</label>
-						<label>
-							Enter your review:
-							<textarea
-								type='text'
-								name='text'
-								value={reviewText}
-								onChange={(e) => setReviewText(e.target.value)}
-								rows='10'
-								cols='60'
-							/>
-						</label>
-						<button className='submit' type='submit'>
-							Submit
-						</button>
-					</form>
-				</div>
-			) : (
-				<div className='no-post'>
-					<h3>Log in to post reviews</h3>
-				</div>
-			)}
 		</div>
 	);
 };

@@ -17,3 +17,34 @@
 }
 .unfav {
 }
+.average {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 10px;
+	column-gap: 10px;
+}
+.reviewsList {
+	display: flex;
+	flex-direction: column-reverse;
+}
+.review-topline {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	column-gap: 10px;
+}
+.review-text {
+	background-color: darkkhaki;
+	border-bottom-color: rgb(107, 163, 189);
+	border-right-color: rgb(131, 198, 229);
+	border-left-color: rgb(62, 94, 109);
+	border-top-color: rgb(93, 154, 182);
+	font-style: italic;
+	padding: 10px;
+}
+
+.review-display {
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+}

@@ -100,3 +100,14 @@ button:hover {
 	border-left-color: rgb(62, 94, 109);
 	border-top-color: rgb(93, 154, 182);
 }
+.opened-form {
+	border: inset steelblue;
+	margin: 0;
+	height: auto;
+	transition: height 2s ease-in-out;
+}
+.closed-form {
+	height: 0;
+	overflow: hidden;
+	transition: height 2s ease-in-out;
+}
