@@ -4,13 +4,16 @@
 .title-line {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
+	justify-content: center;
+	position: relative;
 }
 .favbuttons {
 	display: flex;
+	flex-direction: column;
 	cursor: pointer;
 	width: auto;
-	justify-content: space-evenly;
+	position: absolute;
+	right: 5vw;
 }
 .title {
 	align-self: flex-end;
@@ -47,4 +50,14 @@
 .review-display {
 	margin-bottom: 1rem;
 	margin-top: 1rem;
+}
+
+#rating-input {
+	width: 50px;
+	align-self: center;
+}
+#rating-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }

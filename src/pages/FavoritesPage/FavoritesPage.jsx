@@ -27,10 +27,9 @@ const FavoritesPage = () => {
 					},
 				}
 			);
-			console.log(response);
 			setFavorites(response.data);
 		} catch (error) {
-			console.log(error.response.data, error);
+			console.warn(error.response.data, error);
 		}
 	};
 

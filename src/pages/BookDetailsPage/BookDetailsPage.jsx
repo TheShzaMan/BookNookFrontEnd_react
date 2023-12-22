@@ -38,13 +38,12 @@ const BookDetailsPage = () => {
 			let response = await axios.get(
 				`https://www.googleapis.com/books/v1/volumes/${id}/`
 			);
-
-			console.log("Response from Google Books: ", response);
 			setBookDetails(response.data);
 		} catch (error) {
 			console.log("Error in fetchGoogleBookDetails: ", error);
 		}
 	};
+
 	const fetchReviewDetails = async () => {
 		try {
 			let response = await axios.get(
@@ -55,13 +54,9 @@ const BookDetailsPage = () => {
 					},
 				}
 			);
-			console.log("Response from local api: ", response.data.reviews);
 			setReviewDetails(response.data);
 		} catch (error) {
-			console.warn(
-				"Error in fetchReviewDetails axios get request: ",
-				error
-			);
+			console.warn("Error in fetchReviewDetails: ", error);
 		}
 	};
 
@@ -71,7 +66,6 @@ const BookDetailsPage = () => {
 			Text: reviewText,
 			Rating: reviewRating,
 		};
-
 		try {
 			let response = await axios.post(
 				"https://localhost:5001/api/reviews",
@@ -82,15 +76,33 @@ const BookDetailsPage = () => {
 					},
 				}
 			);
-			console.log(response);
-			if (response.status === 201) {
-				fetchReviewDetails();
-			}
+			response.status === 201 && fetchReviewDetails();
 		} catch (error) {
-			console.warn(
-				"Error submitting review in BookDetailsPage axios post request: ",
-				error
+			console.warn("Error submitting review in BookDetailsPage: ", error);
+		}
+	};
+
+	const addFavorite = async () => {
+		const favoriteData = {
+			BookId: id,
+			Title: bookDetails.volumeInfo.title,
+			ThumbnailUrl: bookDetails.volumeInfo.imageLinks.smallThumbnail
+				? bookDetails.volumeInfo.imageLinks.smallThumbnail
+				: "",
+		};
+		try {
+			let response = await axios.post(
+				"https://localhost:5001/api/favorites",
+				favoriteData,
+				{
+					headers: {
+						Authorization: "Bearer " + token,
+					},
+				}
 			);
+			response.status === 201 && fetchReviewDetails();
+		} catch (error) {
+			console.warn("Error submitting review in BookDetailsPage: ", error);
 		}
 	};
 
@@ -108,20 +120,29 @@ const BookDetailsPage = () => {
 						<h2>{bookDetails.volumeInfo.title}</h2>
 					</div>
 					<div className='favbuttons'>
-						<img
-							src={favHeart}
-							alt='favorite heart icon'
-							className='fav'
-							width={60}
-							height={60}
-						/>
-						<img
-							className='unfav'
-							src={emptyHeart}
-							alt='unselected heart icon'
-							width={60}
-							height={60}
-						/>
+						{reviewDetails.isFavorite ? (
+							<img
+								src={favHeart}
+								alt='favorite heart icon'
+								className='fav'
+								width={60}
+								height={60}
+							/>
+						) : (
+							<div className='favbuttons'>
+								<img
+									className='unfav'
+									src={emptyHeart}
+									alt='unselected heart icon'
+									width={60}
+									height={60}
+									onClick={() => {
+										addFavorite();
+									}}
+								/>
+								Add To Favorites
+							</div>
+						)}
 					</div>
 				</div>
 			) : (
@@ -168,7 +189,6 @@ const BookDetailsPage = () => {
 				) : (
 					<>
 						<button onClick={openPopup}>Submit A Review</button>
-
 						<ReviewForm
 							popupState={popupState}
 							handleSubmit={handleSubmit}

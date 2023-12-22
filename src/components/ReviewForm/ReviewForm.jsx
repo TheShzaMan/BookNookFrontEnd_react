@@ -17,12 +17,13 @@ const ReviewForm = ({
 			<div className='form'>
 				<form onSubmit={handleSubmit}>
 					<h3>Submit Review: </h3>
-					<label>
+					<label id='rating-form'>
 						Book Rating: 0 to 5
 						<input
 							type='number'
+							id='rating-input'
 							value={reviewRating}
-							min='0'
+							min='1'
 							max='5'
 							onChange={(e) => setReviewRating(e.target.value)}
 						/>
@@ -34,8 +35,7 @@ const ReviewForm = ({
 							name='text'
 							value={reviewText}
 							onChange={(e) => setReviewText(e.target.value)}
-							rows='10'
-							cols='60'
+							rows='3'
 						/>
 					</label>
 					<button className='submit' type='submit'>
